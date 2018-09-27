@@ -1,0 +1,16 @@
+<a href="{% url 'root' %}">Accueil</a>
+<h1>Ajouter un nouveau contact</h1>
+
+{% if saved %}
+  <p>Ce contact a bien été enregistré.</p>
+{% endif %}
+
+<p>
+  <form method="post" enctype="multipart/form-data" action="{% url 'new_contact' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit"/>
+  </form>
+</p>
+
+<a class="btn btn-default btn-primary" href="{% url 'contact_list' %}">Voir les contacts</a>

@@ -1,0 +1,87 @@
+<h1>Nos articles</h1>
+
+{% for article in articles %}
+<div class="article">
+  <h3>{{ article.title }}</h3>
+  <p>{{ article.content|truncatewords_html:80 }}</p>
+  <p><a href="{% url "show_article" article.pk %}">Lire la suite</a>
+</div>
+{% endfor %}
+
+{# Mise en forme de la pagination ici #}
+{% if is_paginated %}
+<div class="pagination">
+  {% if page_obj.has_previous %}
+  <a href="?page={{ page_obj.previous_page_number }}">Précédente</a> —
+  {% endif %}
+  Page {{ page_obj.number }} sur {{ page_obj.paginator.num_pages }}
+  {% if page_obj.has_next %}
+  — <a href="?page={{ page_obj.next_page_number }}">Suivante</a>
+  {% endif %}
+</div>
+{% endif %}
+
+{% if categories %}
+  <h3>Catégories disponibles</h3>
+  <ul>
+    {% for category in categories %}
+      <li><a href="{% url 'articles_by_category' category.pk %}">{{ category.name }}</a></li>
+    {% endfor %}
+    <li><a href="{% url 'article_list' %}">All categories</a></li>
+  </ul>
+{% endif%}
+
+
+<div>
+  <a href="{% url 'new_contact' %}">Nouveau Contact</a>
+</div>
+<div>
+  <a class="btn btn-default btn-primary" href="{% url 'contact_list' %}">Voir les contacts</a>
+</div>
+<div>
+  <a href="{% url 'contact' %}" >Contact page</a>
+</div>
+
+{% load flatpages %}
+{% get_flatpages as flatpages %}
+<ul>
+    {% for page in flatpages %}
+        <li><a href="{{ page.url }}">{{ page.title }}</a></li>
+    {% empty %}
+      <li>No flatpages</li>
+    {% endfor %}
+</ul>
+
+{% load humanize %}
+<h3>Test de la librairie humanize :</h3>
+<p>
+  {{ 1|apnumber }} <br>
+  {{ "2"|apnumber }} <br>
+  {{ 10|apnumber }} <br>
+  {{ 300|intcomma }} <br>
+  {{ "9000"|intcomma }} <br />
+  {{ 90000|intcomma }} <br />
+  {{ 9000000|intcomma }} <br>
+  {{ 1000000|intword }}  <br />
+  {{ "4525640"|intword }} <br />
+  {{ 20000000|intword }}  <br />
+  {{ 999999999|intword }} <br />
+  {{ 5500000000|intword }} <br />
+  {{ 1000000000000000000|intword }} <br />
+  {{ 90000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000|intword }} <br />
+  {{ 90000|intword }} <br>
+  {{ date_avant_hier|naturalday:"DATE_FORMAT" }}  <br />
+  {{ date_avant_hier|naturalday:"d/m/Y" }} <br />
+  {{ date_hier|naturalday:"d/m/Y" }} <br />
+  {{ date_auj|naturalday:"d/m/Y" }} <br />
+  {{ date_demain|naturalday:"d/m/Y" }} <br />
+  {{ date1|naturaltime }} renvoie "maintenant"            <br />
+  {{ date2|naturaltime }} renvoie "il y a 29 secondes"    <br />
+  {{ date3|naturaltime }} renvoie "il y a une heure"      <br />
+  {{ date4|naturaltime }} renvoie "il y a une heure"      <br />
+  {{ date5|naturaltime }} renvoie "il y a 1 jour, 1 heure"<br />
+  {{ date6|naturaltime }} renvoie "dans 1 jour, 4 heures" <br />
+  {{ 1|ordinal }}   renvoie 1<sup>er</sup><br />
+  {{ "2"|ordinal }} renvoie 2<sup>e</sup><br />
+  {{ 98|ordinal }}  renvoie 98<sup>e</sup><br />
+</p>

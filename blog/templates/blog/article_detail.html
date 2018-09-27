@@ -1,0 +1,8 @@
+<a href="{% url 'article_list' %}">Accueil</a>
+
+<h1>{{ article.title }} <span class="small">dans {{ article.category.name }}</span></h1>
+<h2>{{ article.slug }}</h2>
+<p class="infos">Rédigé par {{ article.author }}, le {{ article.date|date:"DATE_FORMAT" }}</p>
+<div class="contenu">{{ article.content|safe }}</div>
+<p><em>published on {{ article.date }}</em></p>
+<p><em>Nombre de vues : {{ article.view_nb }}</em></p>

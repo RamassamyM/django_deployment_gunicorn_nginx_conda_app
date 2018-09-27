@@ -1,0 +1,7 @@
+<a href="{% url 'root' %}">Accueil</a>
+<h1>Liste des contacts</h1>
+{% for contact in contacts %}
+  <h2>{{ contact.name }}</h2>
+  <p>Adresse : {{ contact.adress|linebreaks }}</p>
+  <img src="{{ contact.photo.url }}" alt="">
+{% endfor %}
