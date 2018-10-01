@@ -51,37 +51,3 @@
       <li>No flatpages</li>
     {% endfor %}
 </ul>
-
-{% load humanize %}
-<h3>Test de la librairie humanize :</h3>
-<p>
-  {{ 1|apnumber }} <br>
-  {{ "2"|apnumber }} <br>
-  {{ 10|apnumber }} <br>
-  {{ 300|intcomma }} <br>
-  {{ "9000"|intcomma }} <br />
-  {{ 90000|intcomma }} <br />
-  {{ 9000000|intcomma }} <br>
-  {{ 1000000|intword }}  <br />
-  {{ "4525640"|intword }} <br />
-  {{ 20000000|intword }}  <br />
-  {{ 999999999|intword }} <br />
-  {{ 5500000000|intword }} <br />
-  {{ 1000000000000000000|intword }} <br />
-  {{ 90000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000|intword }} <br />
-  {{ 90000|intword }} <br>
-  {{ date_avant_hier|naturalday:"DATE_FORMAT" }}  <br />
-  {{ date_avant_hier|naturalday:"d/m/Y" }} <br />
-  {{ date_hier|naturalday:"d/m/Y" }} <br />
-  {{ date_auj|naturalday:"d/m/Y" }} <br />
-  {{ date_demain|naturalday:"d/m/Y" }} <br />
-  {{ date1|naturaltime }} renvoie "maintenant"            <br />
-  {{ date2|naturaltime }} renvoie "il y a 29 secondes"    <br />
-  {{ date3|naturaltime }} renvoie "il y a une heure"      <br />
-  {{ date4|naturaltime }} renvoie "il y a une heure"      <br />
-  {{ date5|naturaltime }} renvoie "il y a 1 jour, 1 heure"<br />
-  {{ date6|naturaltime }} renvoie "dans 1 jour, 4 heures" <br />
-  {{ 1|ordinal }}   renvoie 1<sup>er</sup><br />
-  {{ "2"|ordinal }} renvoie 2<sup>e</sup><br />
-  {{ 98|ordinal }}  renvoie 98<sup>e</sup><br />
-</p>
