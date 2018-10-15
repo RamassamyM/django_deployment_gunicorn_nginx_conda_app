@@ -15,7 +15,7 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
 
-env_config_file = 'analyzer_api/env_configuration/production_config.json'
+env_config_file = BASE_DIR + '/env_configuration/production_config.json'
 
 import os
 import json
