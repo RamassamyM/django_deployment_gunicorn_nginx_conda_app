@@ -1,4 +1,4 @@
-from base import *
+from ..settings.base import *
 
 DEBUG = False
 
@@ -15,14 +15,13 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
 
-env_config_file = '../env_configuration/production_config.json'
-
+env_config_file = 'analyzer_api/env_configuration/production_config.json'
 
 import os
 import json
 from django.core.exceptions import ImproperlyConfigured
 
-with open(os.environ.get(env_config_file)) as f:
+with open(env_config_file) as f:
  configs = json.loads(f.read())
 
 def get_env_var(setting, configs=configs):
