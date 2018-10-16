@@ -38,4 +38,4 @@ def get_env_var(setting, configs=configs):
 #get secret key
 SECRET_KEY = get_env_var("SECRET_KEY")
 
-ALLOWED_HOSTS = ['988.1.123',]
+ALLOWED_HOSTS = ['.localhost', '127.0.0.1']
