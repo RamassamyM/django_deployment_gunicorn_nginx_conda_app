@@ -1,4 +1,4 @@
-from base import *
+from ..settings.base import *
 
 
 DATABASES['default'] = {
@@ -24,14 +24,14 @@ DEBUG_TOOLBAR_CONFIG = {
     'JQUERY_URL': '',
 }
 
-env_config_file = '../env_configuration/testing_config.json'
+env_config_file = BASE_DIR + '/env_configuration/testing_config.json'
 
 
 import os
 import json
 from django.core.exceptions import ImproperlyConfigured
 
-with open(os.environ.get(env_config_file)) as f:
+with open(env_config_file) as f:
  configs = json.loads(f.read())
 
 def get_env_var(setting, configs=configs):

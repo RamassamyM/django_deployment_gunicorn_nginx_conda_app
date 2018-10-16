@@ -1,27 +1,27 @@
-from base import *
+from ..settings.base import *
 
 DEBUG = True
 
-INSTALLED_APPS += [
-    'debug_toolbar',
-]
-
-MIDDLEWARE += ['debug_toolbar.middleware.DebugToolbarMiddleware', ]
+# INSTALLED_APPS += [
+#     'debug_toolbar',
+# ]
+#
+# MIDDLEWARE += ['debug_toolbar.middleware.DebugToolbarMiddleware', ]
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-DEBUG_TOOLBAR_CONFIG = {
-    'JQUERY_URL': '',
-}
+# DEBUG_TOOLBAR_CONFIG = {
+#     'JQUERY_URL': '',
+# }
 
-env_config_file = '../env_configuration/local_config.json'
+env_config_file = BASE_DIR + '/env_configuration/local_config.json'
 
 
 import os
 import json
 from django.core.exceptions import ImproperlyConfigured
 
-with open(os.environ.get(env_config_file)) as f:
+with open(env_config_file) as f:
  configs = json.loads(f.read())
 
 def get_env_var(setting, configs=configs):
@@ -38,4 +38,4 @@ def get_env_var(setting, configs=configs):
 #get secret key
 SECRET_KEY = get_env_var("SECRET_KEY")
 
-ALLOWED_HOSTS = ['.localhost', '127.0.0.1'. ]
+ALLOWED_HOSTS = ['988.1.123',]
