@@ -2,24 +2,8 @@
 # and create a symlink in sites-enabled with
 # cd /etc/nginx/sites-enabled
 # ln -s ../sites-available/this_file_name_you_chose
-# service nginx restart
-
-upstream app_server {
-    # fail_timeout=0 means we always retry an upstream even if it failed
-    # to return a good HTTP response
-
-    # for UNIX domain socket setups
-    server unix:/tmp/gunicorn.sock fail_timeout=0;
-
-    # for a TCP configuration
-    # server 192.168.0.7:8000 fail_timeout=0;
- }
-
-server {
-    # if no Host match, close the connection to prevent host spoofing
-    listen 80 default_server;
-    return 444;
-}
+# (sudo) systemctl enable nginx.service
+# (sudo) systemctl start nginx
 
 # Configuration du server
 server {
@@ -39,7 +23,7 @@ server {
     error_log /home/elk/app/nginx/django_test_app.log;
 
     # path for static files
-    root /home/elk/app/django_test/static;
+    # root /home/elk/app/django_test/static;
 
     # Fichiers media et statiques, délivrés par nginx directement
     location /media  {
@@ -65,7 +49,7 @@ server {
         # we don't want nginx trying to do something clever with
         # redirects, we set the Host: header above already.
         proxy_redirect off;
-        proxy_pass http://app_server;
+        proxy_pass http://unix:/run/gunicorn/socket;
     }
 
     error_page 500 502 503 504 /500.html;

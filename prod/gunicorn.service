@@ -1,4 +1,4 @@
-# copy this file to /etc/systemd/system/gunicorn.service ou /lib/systemd/system/gunicorn.service
+# copy this file to /etc/systemd/system/gunicorn.service or /lib/systemd/system/gunicorn.service
 [Unit]
 Description=gunicorn daemon
 Requires=gunicorn.socket
@@ -10,8 +10,7 @@ User=elk
 Group=elk
 RuntimeDirectory=gunicorn
 WorkingDirectory=/home/elk/app/django_test
-ExecStart=/usr/bin/gunicorn --pid /run/gunicorn/pid   \
-          --bind unix:/run/gunicorn/socket analyzer_api.wsgi
+ExecStart=/usr/local/bin/launch_gunicorn
 ExecReload=/bin/kill -s HUP $MAINPID
 ExecStop=/bin/kill -s TERM $MAINPID
 PrivateTmp=true

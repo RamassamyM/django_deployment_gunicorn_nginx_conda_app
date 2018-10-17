@@ -1,3 +1,15 @@
+# create a directory /env_configuration/ and add different config files :
+# ci_config.json, local_config.json, production_config.json, staging_config.json, testing_config.json
+# like this one for production for example :
+# {
+#     "SECRET_KEY" : "mykey",
+#     "DATABASE_URL" : "postgres://user:michael@localhost:5432/xxxxxxxxxxx",
+#     "EMAIL_HOST_USER" : "user",
+#     "EMAIL_HOST_PASSWORD" : "password",
+#     "SECRET_ALLOWED_HOST" : "['.localhost', '127.0.0.1:8000', '127.0.0.1']"
+# }
+
+
 from ..settings.base import *
 
 DEBUG = True

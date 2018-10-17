@@ -1,0 +1,29 @@
+#!/bin/bash
+#should be launched in sudo if permission needed for editing logfile
+# this file has to be copied in /usr/local/bin and : sudo chmod +x path_to_this_file
+set -e
+LOGFILE=/var/log/gunicorn/djangoapp.log
+LOGDIR=$(dirname $LOGFILE)
+LOGLEVEL=debug   # info ou warning une fois l'installation OK
+NUM_WORKERS=3    # Règle : (2 x $num_cores) + 1
+TIMEOUT=120
+# user/group to run as
+USER=elk
+GROUP=elk
+
+PATH=/home/elk/miniconda3/envs/watcher_env/bin:/home/elk/miniconda3/bin:$PATH
+
+# specify the name of the django app
+app_name=analyzer_api
+
+cd /home/elk/app/django_test
+# source ../bin/activate  # Cette ligne ne sert que si vous utilisez virtualenv
+source activate django_env # si on utilise conda (avec systectl il faut configurer le PATH d’abord et il faut créer son environnement au préalable)
+test -d $LOGDIR || mkdir -p $LOGDIR
+if [ ! -d $LOGFILE ]
+then
+        touch $LOGFILE
+fi
+exec gunicorn --pid /run/gunicorn/pid -w $NUM_WORKERS --timeout $TIMEOUT\
+  --user=$USER --group=$GROUP --log-level=$LOGLEVEL \
+  --log-file=$LOGFILE 2>>$LOGFILE --bind unix:/run/gunicorn/socket $app_name.wsgi
