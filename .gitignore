@@ -3,5 +3,10 @@ __pycache__/
 .env
 venv/
 *.sqlite3
-env_configuration/
-media
+
+# exclude everything
+media/*
+analyzer_api/env_configuration/*
+# exception to the rule
+!media/.gitkeep
+!analyzer_api/env_configuration/.gitkeep
