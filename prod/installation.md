@@ -2,6 +2,7 @@
 ###### Méthode  : systemd/nginx/miniconda/gunicorn/python/django/
 Pré-requis : serveur linux avec accès root ou accès ssh
 
+=> Read <http://docs.gunicorn.org/en/latest/deploy.html>
 NB : protocole WSGI = spécification qui permet à un serveur web et une application Python de communiquer ensemble et ainsi récupérer les pages web générées par Django.
 
 ## SUR l'APPLICATION
